@@ -64,4 +64,16 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
+vim.api.nvim_create_autocmd('BufReadPost', {
+  pattern = { '*' },
+  callback = function()
+    -- Get the last cursor position
+    local last_pos = vim.fn.line '\'"'
+    local last_line = vim.fn.line '$'
+    -- Check if the position is valid and within the file
+    if last_pos > 1 and last_pos <= last_line then
+      vim.cmd 'normal! g`"'
+    end
+  end,
+})
 -- vim: ts=2 sts=2 sw=2 et
