@@ -9,7 +9,7 @@ vim.opt.number = true
 --  Experiment for yourself to see if you like it!
 vim.opt.relativenumber = true
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -19,7 +19,7 @@ vim.opt.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
+	vim.opt.clipboard = "unnamedplus"
 end)
 
 -- Enable break indent
@@ -33,7 +33,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 
 -- Decrease update time
 vim.opt.updatetime = 250
@@ -49,10 +49,10 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = "split"
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
@@ -63,16 +63,19 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
-vim.api.nvim_create_autocmd('BufReadPost', {
-  pattern = { '*' },
-  callback = function()
-    -- Get the last cursor position
-    local last_pos = vim.fn.line '\'"'
-    local last_line = vim.fn.line '$'
-    -- Check if the position is valid and within the file
-    if last_pos > 1 and last_pos <= last_line then
-      vim.cmd 'normal! g`"'
-    end
-  end,
+vim.api.nvim_create_autocmd("BufReadPost", {
+	pattern = { "*" },
+	callback = function()
+		-- Get the last cursor position
+		local last_pos = vim.fn.line("'\"")
+		local last_line = vim.fn.line("$")
+		-- Check if the position is valid and within the file
+		if last_pos > 1 and last_pos <= last_line then
+			vim.cmd('normal! g`"')
+		end
+	end,
 })
+-- Set transparent background
+vim.cmd("highlight Normal ctermbg=none guibg=none")
+vim.cmd("highlight NonText ctermbg=none guibg=none")
 -- vim: ts=2 sts=2 sw=2 et
